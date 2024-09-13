@@ -1,0 +1,143 @@
+/* Reset basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background-color: #097c12;
+  padding: 10px 0;
+  color: white;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  width: 300px; /* Adjust size to fit logo */
+  height: auto;
+  cursor: pointer;
+}
+
+.login-text {
+  font-size: 1rem;
+  margin-right: 15px;
+  font-weight: bold; /* Bold for Login */
+  cursor: pointer;
+}
+
+/* Login Section */
+.login-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.login-box {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Input fields */
+.input-box {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-box label {
+  display: block;
+  font-weight: bold; /* Make labels bold */
+  margin-bottom: 5px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+  font-size: 1rem;
+}
+
+/* Login button */
+button {
+  width: auto; /* Adjust button width to fit its content */
+  padding: 10px 30px; /* Increase horizontal padding for a wider button */
+  background-color: #006666; /* Use the teal color */
+  color: white;
+  border: none;
+  border-radius: 2px; /* Slightly rounded corners */
+  cursor: pointer;
+  font-size: 14px; /* Match the font size in the image */
+  font-weight: bold;
+  text-align: left; /* Align text inside the button to the left */
+}
+
+button:hover {
+  background-color: #004c4c; /* Darker shade on hover */
+}
+
+/* Adjust form container to align content to the left */
+.login-box {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: left; /* Align form elements to the left */
+}
+
+/* Footer */
+footer {
+  background-color: #097c12;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p:first-child {
+  text-align: left;
+  flex: 1;
+}
+
+footer p:last-child {
+  text-align: right;
+  flex: 1;
+}
