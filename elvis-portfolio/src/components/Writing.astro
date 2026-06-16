@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { posts?: CollectionEntry<'blog'>[]; }
+const { posts = [] } = Astro.props;
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<section id="writing" data-label="writing">
+  <div class="eyebrow reveal"><span class="port"><i></i></span> notes</div>
+  <h2 class="sec-h reveal">Writing</h2>
+  <p class="sec-sub reveal">Lab notes and breakdowns of what I'm learning, in my own words.</p>
+  {posts.length > 0 ? (
+    <div class="posts reveal">
+      {posts.map((p) => (
+        <a class="post-link" href={`/blog/${p.slug}`}>
+          <div class="date">{fmt(p.data.date)}</div>
+          <h3>{p.data.title}</h3>
+          <p>{p.data.summary}</p>
+        </a>
+      ))}
+      <a class="back" href="/blog" style="margin-top:6px">read the blog →</a>
+    </div>
+  ) : (
+    <div class="empty reveal">
+      <h3>No posts published yet</h3>
+      <p>The first write-up — a teardown of my home-lab build — is in progress.</p>
+      <span class="mono">// first post: loading…</span>
+    </div>
+  )}
+</section>

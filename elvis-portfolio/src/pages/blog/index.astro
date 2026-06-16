@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title="Writing — Elvis Ezimako" description="Lab notes and breakdowns of what I'm learning.">
+  <main class="wrap" style="padding-top:48px;padding-bottom:60px">
+    <a href="/" class="back">← home</a>
+    <div class="eyebrow"><span class="port"><i></i></span> notes</div>
+    <h1 class="sec-h" style="font-size:30px;margin-bottom:8px">Writing</h1>
+    <p class="sec-sub">Lab notes and breakdowns of what I'm learning, in my own words.</p>
+    <div class="posts">
+      {posts.map((p) => (
+        <a class="post-link" href={`/blog/${p.slug}`}>
+          <div class="date">{fmt(p.data.date)}</div>
+          <h3>{p.data.title}</h3>
+          <p>{p.data.summary}</p>
+        </a>
+      ))}
+      {posts.length === 0 && (
+        <div class="empty"><h3>No posts yet</h3><p>The first write-up is on the way.</p></div>
+      )}
+    </div>
+  </main>
+</Base>

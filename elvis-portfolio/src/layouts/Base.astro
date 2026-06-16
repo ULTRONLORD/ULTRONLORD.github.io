@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props { title?: string; description?: string; }
+const {
+  title = 'Elvis Ezimako — Networking & Security',
+  description = 'Computer science student going deep on networking and security. Projects, a personal roadmap, and notes from the home lab.',
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script is:inline>
+    // Set the theme before paint so there's no flash.
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <Nav />
+  <slot />
+  <Footer />
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = String(new Date().getFullYear());
+
+    // theme toggle
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        const next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    }
+
+    // mobile menu
+    const burger = document.querySelector('.burger');
+    const links = document.getElementById('links');
+    if (burger && links) {
+      burger.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        burger.setAttribute('aria-expanded', String(open));
+      });
+      links.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('click', () => links.classList.remove('open'))
+      );
+    }
+
+    // reveal on scroll
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // left "patch panel" spine that lights up as you scroll
+    const spine = document.getElementById('spine');
+    if (spine) {
+      const fill = document.getElementById('spineFill');
+      const secs = Array.from(document.querySelectorAll('section[id]'));
+      const last = Math.max(secs.length - 1, 1);
+      const nodes = secs.map((s, i) => {
+        const a = document.createElement('a');
+        a.className = 'node';
+        a.href = '#' + s.id;
+        a.dataset.label = s.getAttribute('data-label') || s.id;
+        a.dataset.live = '0';
+        a.style.top = (i / last) * 100 + '%';
+        a.innerHTML = '<span class="dot"></span>';
+        spine.appendChild(a);
+        return a;
+      });
+      let active = 0;
+      const sio = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const idx = secs.indexOf(e.target);
+              if (idx > -1) active = idx;
+              if (fill) fill.style.height = (active / last) * 100 + '%';
+              nodes.forEach((n, i) => (n.dataset.live = i <= active ? '1' : '0'));
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      secs.forEach((s) => sio.observe(s));
+    }
+  </script>
+</body>
+</html>

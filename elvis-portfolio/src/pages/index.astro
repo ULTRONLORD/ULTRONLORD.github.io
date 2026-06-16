@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Journey from '../components/Journey.astro';
+import Certs from '../components/Certs.astro';
+import Writing from '../components/Writing.astro';
+import Talks from '../components/Talks.astro';
+import Connect from '../components/Connect.astro';
+import ProjectTabs from '../components/ProjectTabs.tsx';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<Base>
+  <div class="spine" id="spine" aria-hidden="true">
+    <div class="track"></div>
+    <div class="fill" id="spineFill"></div>
+  </div>
+
+  <main class="wrap">
+    <Hero />
+    <Journey />
+
+    <section id="projects" data-label="projects">
+      <div class="eyebrow reveal"><span class="port"><i></i></span> what i've built</div>
+      <h2 class="sec-h reveal">Projects</h2>
+      <p class="sec-sub reveal">Sorted by where they live on the path. Networking is just getting started — those are loading.</p>
+      <div class="reveal">
+        <ProjectTabs client:visible />
+      </div>
+    </section>
+
+    <Certs />
+    <Writing posts={posts} />
+    <Talks />
+    <Connect />
+  </main>
+</Base>
