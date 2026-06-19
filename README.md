@@ -40,7 +40,7 @@ When you're done building and want the final files:
 | Headline, bio, status line       | `src/components/Hero.astro`            |
 | Colors / fonts                   | `src/styles/global.css` (top `:root`) |
 | The roadmap (networking → cloud) | `src/components/Journey.astro`        |
-| Projects (add / edit / link)     | `src/data/projects.ts`                |
+| Projects (add / edit/link)     | `src/data/projects.ts`                |
 | How project cards look/behave    | `src/components/ProjectTabs.tsx` (React) |
 | Certifications + progress        | `src/components/Certs.astro`          |
 | Your email + social links        | `src/components/Connect.astro`        |
@@ -71,23 +71,4 @@ React component (uses `useState`). It's loaded on the homepage with
 this piece. Edit it like any React component to practice.
 
 ---
-
-## Put it online (free, with GitHub Pages)
-
-The fastest route is a **user site**:
-
-1. Create a GitHub repo named exactly **`ULTRONLORD.github.io`**.
-2. Push this project to it (main branch).
-3. On GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-4. The included workflow (`.github/workflows/deploy.yml`) builds and deploys on every
-   push. Your site goes live at **https://ULTRONLORD.github.io**.
-
-If instead you use a normal repo name (like `portfolio`), open `astro.config.mjs`,
-uncomment the `base` line, and set it to `'/portfolio'`.
-
 ---
-
-## A couple of TODOs left for you
-- Replace the placeholder email in `src/components/Connect.astro`.
-- Swap the "in progress" networking cards for real projects + screenshots as you build them.
-- Nudge the certification progress bars in `src/components/Certs.astro` as you go.
