@@ -1,20 +1,82 @@
 ---
+
 ---
+
 <section class="hero" id="hero" data-label="home">
+  <div class="hero-photo">
+    <img src="/profile.jpg" alt="Elvis Ezimako" />
+  </div>
+
   <div class="kicker reveal">// cs student · networking &amp; security</div>
-  <h1 class="reveal">Computer science student,<br><span class="dim">going deep on</span> networking &amp; security.</h1>
+  <h1 class="reveal">
+    Computer science student,<br /><span class="dim">going deep on</span> networking
+    &amp; security.
+  </h1>
   <div class="bio reveal">
     <div class="who">~$ whoami</div>
-    <p>I started in code, but the moment I understood how data actually moves across a network, that was it. Now my time goes to packets, ports, and protocols — how connections work, and how to keep them from being abused.</p>
+    <p>
+      I started in code, but the moment I understood how data actually moves
+      across a network, that was it. Now my time goes to packets, ports, and
+      protocols — how connections work, and how to keep them from being abused.
+    </p>
   </div>
-  <div class="status reveal"><span class="led"></span><span class="mono">studying for CCNA · wiring up my first home lab</span></div>
+  <div class="status reveal">
+    <span class="led"></span><span class="mono"
+      >studying for CCNA · wiring up my first home lab</span
+    >
+  </div>
   <div class="cta reveal">
     <a href="#projects" class="btn solid">See my work</a>
-    <a href="https://github.com/ULTRONLORD" class="btn line" target="_blank" rel="noopener">GitHub ↗</a>
-  </div>
-  <div class="panel-strip reveal" aria-hidden="true">
-    <span class="p"></span><span class="p on"></span><span class="p"></span><span class="p"></span>
-    <span class="cbl"></span>
-    <span class="p"></span><span class="p"></span><span class="p"></span>
+    <a
+      href="https://github.com/ULTRONLORD"
+      class="btn line"
+      target="_blank"
+      rel="noopener">GitHub ↗</a
+    >
   </div>
 </section>
+<div class="panel-strip reveal" aria-hidden="true">
+  <span class="p"></span><span class="p on"></span><span class="p"></span><span
+    class="p"></span>
+  <span class="cbl"></span>
+  <span class="p"></span><span class="p"></span><span class="p"></span>
+</div>
+
+<style>
+  .hero {
+    position: relative;
+  }
+
+  .hero-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .hero-photo img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #00f0ff;
+    box-shadow:
+      0 0 20px rgba(0, 240, 255, 0.4),
+      0 0 40px rgba(0, 240, 255, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hero-photo img:hover {
+    box-shadow:
+      0 0 30px rgba(0, 240, 255, 0.6),
+      0 0 60px rgba(0, 240, 255, 0.25);
+  }
+
+  @media (max-width: 900px) {
+    .hero-photo {
+      position: static;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
